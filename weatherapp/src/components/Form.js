@@ -9,7 +9,7 @@ class Form extends React.Component {
                 
                 <input type="text" name="city" placeholder ="Stad..."/>
                 <input type="text" name="country" placeholder ="Land..."/>
-                <button>Get weather</button>
+                <button>Hämta väder</button>
                               
             </form>
         );
