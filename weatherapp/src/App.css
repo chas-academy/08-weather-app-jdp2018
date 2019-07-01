@@ -5,9 +5,17 @@ input[type="text1"] {
     color: #fff;
     font-weight: lighter;
     letter-spacing: 2px;
-    text-align: left;
+    margin-bottom: 30px;
+    margin-right: 20px;
     font-size: 20px;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    
 }
+
+
 input[type="text2"] {
     background-color: transparent;
     border: 0;
@@ -19,4 +27,128 @@ input[type="text2"] {
     margin-right: 20px;
     font-size: 20px;
     text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+input[type="text3"] {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 20px;
+    text-align: left;
+    position: absolute;
+    top: 2%;
+    left: 80%;
+    
+}
+input[type="text4"] {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 20px;
+    text-align: left;
+    position: absolute;
+    top: 2%;
+    left: 85%;
+    
+}
+input[type="text1"]{
+    outline: none;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px  #1D4582 inset;
+    -webkit-text-fill-color: #fff !important
+    
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient( #050821,#0d78e2);
+    color: #fff;
+}
+
+
+
+
+.title-container-title {
+    font-size: 50px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    
+}
+
+button {
+    border: 0;
+    padding: 8px 20px;
+    margin: 0 2px;
+    border-radius: 2px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: aqua;
+    color: #fff;
+    font-weight: 100;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+
+}
+button:active{
+    outline:none;
+}
+.weather__info {
+    width: 60%;
+    font-size: 20px;
+    font-weight: 200px;
+    letter-spacing: 2px;
+
+}
+.title {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'arial';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%)
+}
+.data-container {
+    position: absolute;
+    top: 60%;
+    left: 43%;
+    
+}
+::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+.button1{
+    border: 0;
+    padding: 8px 20px;
+    margin: 0 2px;
+    border-radius: 2px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: aqua;
+    color: #fff;
+    font-weight: 100;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+
 }
