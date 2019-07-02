@@ -6,18 +6,6 @@ const Body = styled.div`
   align-items: center;
   text-align: center;
 `;
-const StyleButton = styled.button`
-  font-size: 13px;
-  border-radius: 2px;
-  font-weight: lighter;
-  letter-spacing: 1px;
-  padding: 8px 20px;
-  margin: 0 2px;
-  color: #black;
-  font-weight: 100;
-  background-color: #fff;
-  outline: none;
-`;
 
 class Form extends React.Component {
   render() {

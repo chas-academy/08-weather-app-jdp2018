@@ -2,15 +2,10 @@ import React from "react";
 import Titles from "./components/Titles";
 import Form from "./components/Form";
 import WeatherData from "./components/WeatherData";
-
-
-
-
-
-const API_KEY = "074fb68cdf996582973f45586d848359";
-
-const temperatureSection = document.querySelector(".temperature");
-const temperatureSpan = document.querySelector('.temperature')
+import GeoLocation from "./service/GeoLocation";
+import api from "./service/WeatherApi";
+import Forecast from "./components/Forecast";
+import { async } from "q";
 
 class App extends React.Component {
   state = {
@@ -19,68 +14,96 @@ class App extends React.Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
+    days: [],
     error: undefined
-
   };
 
-  
+  resetState = error => {
+    this.setState({
+      temperature: undefined,
+      city: undefined,
+      country: undefined,
+      humidity: undefined,
+      description: undefined,
+      location: undefined,
+      days: [],
+      error: error
+    });
+  };
 
-  getWeather = async e => {
-    e.preventDefault();
+  updateWeather = data => {
+    this.setState({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      location: data.coords,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      lat: data.coords,
+      error: ""
+    });
+  };
+  getWeatherForm = async e => {
+  e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
 
-    const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
-    );
-    const data = await api_call.json();
-
-
-    if (city && country ) {
-      console.log(data);
-      this.setState({
-        temperature: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        error: ""
-      });
-    } else {
-      this.setState({
-        temperature: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        description: undefined,
-        error: "please enter something bitch boy"
-
-      });
-      
+    if (!city || !country) {
+      this.resetState("You need to enter something bitch boy");
+      return;
     }
+    
+    this.getWeather(api.getQuery(city, country))
+  }
+  getWeatherPos = async pos => {
+      if(!pos ) {
+        this.resetState("could not find bitches")
+      }
+      this.getWeather(api.getQueryLocation(pos))
+  }
+
+  getWeather = async (query) => {
+
+
+    api.getWeather(
+        query
+      )
+      .then(data => this.updateWeather(data))
+      .catch(error => {
+        console.log(error);
+        this.resetState(error);
+      });
+      api.getForeCast(
+       query
+      )
+      .then(data => { this.setState({
+        days: data.list
+      }
+      )
+    console.log(this.state)})
   };
+
 
   render() {
     return (
-          <div>
-          <Titles />
-          <Form getWeather={this.getWeather} />
-          <WeatherData
-            country={this.state.country}
-            city={this.state.city}
-            temperature={this.state.temperature}
-            humidity={this.state.humidity}
-            description={this.state.description}
-            error={this.state.error}
-          />
-          
-          </div>
+      <div>
+        {GeoLocation.getLocation(pos=> this.getWeatherPos(pos)) }
+        <Titles />
+        <Form getWeather={this.getWeatherForm} />
+        <WeatherData
+          country={this.state.country}
+          city={this.state.city}
+          temperature={this.state.temperature}
+          humidity={this.state.humidity}
+          description={this.state.description}
+          location={this.state.coords}
+          error={this.state.error}
+        />
+        <Forecast days = {this.state.days}/>
         
-        
-
-
-      
+      </div>
     );
   }
 }
+
 export default App;

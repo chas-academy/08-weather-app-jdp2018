@@ -124,7 +124,7 @@ button:active{
     left: 50%;
     transform: translateX(-50%)
 }
-.data-container {
+.content {
     position: absolute;
     top: 60%;
     left: 43%;
