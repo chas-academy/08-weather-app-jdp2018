@@ -98,9 +98,7 @@ button {
     background-color: aqua;
     color: #fff;
     font-weight: 100;
-    position: absolute;
-    top: 50%;
-    left: 65%;
+    position: relative;
 
 }
 button:active{

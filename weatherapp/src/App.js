@@ -15,6 +15,8 @@ class App extends React.Component {
     humidity: undefined,
     description: undefined,
     days: [],
+    unit: api.celcius,
+    query: "",
     error: undefined
   };
 
@@ -43,8 +45,19 @@ class App extends React.Component {
       error: ""
     });
   };
-  getWeatherForm = async e => {
-  e.preventDefault();
+
+  updateForecast = data => {
+    if (!data || !data.list) {
+      return;
+    }
+
+    this.setState({
+      days: data.list
+    });
+  };
+
+  getWeatherForm = e => {
+    e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
 
@@ -52,43 +65,50 @@ class App extends React.Component {
       this.resetState("You need to enter something bitch boy");
       return;
     }
-    
-    this.getWeather(api.getQuery(city, country))
-  }
-  getWeatherPos = async pos => {
-      if(!pos ) {
-        this.resetState("could not find bitches")
-      }
-      this.getWeather(api.getQueryLocation(pos))
-  }
 
-  getWeather = async (query) => {
-
-
-    api.getWeather(
-        query
-      )
-      .then(data => this.updateWeather(data))
-      .catch(error => {
-        console.log(error);
-        this.resetState(error);
-      });
-      api.getForeCast(
-       query
-      )
-      .then(data => { this.setState({
-        days: data.list
-      }
-      )
-    console.log(this.state)})
+    this.getWeather(api.getQuery(city, country));
   };
+
+  getWeatherPos = pos => {
+    if (!pos) {
+      this.resetState("could not find bitches");
+    }
+    this.getWeather(api.getQueryLocation(pos));
+  };
+
+  getWeather = query => {
+    api
+      .getWeather(query, this.state.unit)
+      .then(data => this.updateWeather(data))
+      .catch(error => this.resetState("Error"));
+
+    api
+      .getForeCast(query, this.state.unit)
+      .then(data => this.updateForecast(data))
+      .catch(error => this.resetState("Error"));
+
+    this.setState({query: query});
+  };
+
+  toggleUnit = () => {
+    const currentUnit = this.state.unit;
+    const newUnit = currentUnit === api.celcius ? api.fahrenheit : api.celcius;
+    this.setState({
+      unit: newUnit
+    });
+    const currentQuery = this.state.query;
+    if (currentQuery !== "") {
+      this.getWeather(currentQuery);
+    }
+  }
+
 
 
   render() {
     return (
       <div>
-        {GeoLocation.getLocation(pos=> this.getWeatherPos(pos)) }
         <Titles />
+        <button onClick={()=>this.toggleUnit()}>r4r4r</button>
         <Form getWeather={this.getWeatherForm} />
         <WeatherData
           country={this.state.country}
@@ -99,10 +119,13 @@ class App extends React.Component {
           location={this.state.coords}
           error={this.state.error}
         />
-        <Forecast days = {this.state.days}/>
-        
+        <Forecast days={this.state.days} />
       </div>
     );
+  }
+
+  componentDidMount() {
+      GeoLocation.getLocation(pos => this.getWeatherPos(pos));
   }
 }
 
