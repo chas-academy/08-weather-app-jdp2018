@@ -5,7 +5,6 @@ import WeatherData from "./components/WeatherData";
 import GeoLocation from "./service/GeoLocation";
 import api from "./service/WeatherApi";
 import Forecast from "./components/Forecast";
-import { async } from "q";
 
 class App extends React.Component {
   state = {
@@ -62,7 +61,7 @@ class App extends React.Component {
     const country = e.target.elements.country.value;
 
     if (!city || !country) {
-      this.resetState("You need to enter something bitch boy");
+      this.resetState("You need to enter something");
       return;
     }
 
@@ -71,10 +70,13 @@ class App extends React.Component {
 
   getWeatherPos = pos => {
     if (!pos) {
-      this.resetState("could not find bitches");
+      this.resetState("You either pressed no or we couldn't find you :(");
+    } else {
+      
     }
     this.getWeather(api.getQueryLocation(pos));
   };
+
 
   getWeather = query => {
     api
@@ -87,7 +89,7 @@ class App extends React.Component {
       .then(data => this.updateForecast(data))
       .catch(error => this.resetState("Error"));
 
-    this.setState({query: query});
+    this.setState({ query: query });
   };
 
   toggleUnit = () => {
@@ -100,32 +102,34 @@ class App extends React.Component {
     if (currentQuery !== "") {
       this.getWeather(currentQuery);
     }
-  }
-
-
+  };
 
   render() {
     return (
-      <div>
-        <Titles />
-        <button onClick={()=>this.toggleUnit()}>r4r4r</button>
-        <Form getWeather={this.getWeatherForm} />
-        <WeatherData
-          country={this.state.country}
-          city={this.state.city}
-          temperature={this.state.temperature}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          location={this.state.coords}
-          error={this.state.error}
-        />
-        <Forecast days={this.state.days} />
-      </div>
+      <React.Fragment>
+        <div className="week">
+          <Forecast days={this.state.days} />
+          <WeatherData
+            country={this.state.country}
+            city={this.state.city}
+            temperature={this.state.temperature}
+            humidity={this.state.humidity}
+            description={this.state.description}
+            location={this.state.coords}
+            error={this.state.error}
+          />
+          <button className="btn2" onClick={() => this.toggleUnit()}>
+            C-F
+          </button>
+          <Titles />
+          <Form getWeather={this.getWeatherForm} />
+        </div>
+      </React.Fragment>
     );
   }
 
   componentDidMount() {
-      GeoLocation.getLocation(pos => this.getWeatherPos(pos));
+    GeoLocation.getLocation(pos => this.getWeatherPos(pos));
   }
 }
 
