@@ -1,2 +1,2 @@
-const getLocation = (callback) => navigator.geolocation.getCurrentPosition(callback);
+const getLocation = (callback, error) => navigator.geolocation.getCurrentPosition(callback, error);
 export default {getLocation}

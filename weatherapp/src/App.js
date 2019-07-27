@@ -72,43 +72,45 @@ class App extends React.Component {
     if (!pos) {
       this.resetState("You either pressed no or we couldn't find you :(");
     } else {
-      
+      this.getWeather(api.getQueryLocation(pos));
     }
-    this.getWeather(api.getQueryLocation(pos));
   };
 
-
-  getWeather = query => {
+  getWeather = (query, unit) => {
+    unit = unit || this.state.unit;
     api
-      .getWeather(query, this.state.unit)
+      .getWeather(query, unit)
       .then(data => this.updateWeather(data))
       .catch(error => this.resetState("Error"));
 
     api
-      .getForeCast(query, this.state.unit)
+      .getForeCast(query, unit)
       .then(data => this.updateForecast(data))
       .catch(error => this.resetState("Error"));
 
-    this.setState({ query: query });
+    this.setState({ query: query, unit: unit });
   };
 
   toggleUnit = () => {
     const currentUnit = this.state.unit;
     const newUnit = currentUnit === api.celcius ? api.fahrenheit : api.celcius;
-    this.setState({
-      unit: newUnit
-    });
     const currentQuery = this.state.query;
     if (currentQuery !== "") {
-      this.getWeather(currentQuery);
+      this.getWeather(currentQuery, newUnit);
     }
   };
+
+  getUnit = () => this.state.unit === api.celcius ? "C" : "F";
 
   render() {
     return (
       <React.Fragment>
-        <div className="week">
-          <Forecast days={this.state.days} />
+        <Titles />
+        <Form getWeather={this.getWeatherForm} />
+        <button className="btn2" onClick={(unit) => this.toggleUnit()}>
+          C-F
+        </button>
+        <div>
           <WeatherData
             country={this.state.country}
             city={this.state.city}
@@ -117,19 +119,18 @@ class App extends React.Component {
             description={this.state.description}
             location={this.state.coords}
             error={this.state.error}
+            unit= {this.getUnit()}
           />
-          <button className="btn2" onClick={() => this.toggleUnit()}>
-            C-F
-          </button>
-          <Titles />
-          <Form getWeather={this.getWeatherForm} />
+          <div className="week">
+            <Forecast days={this.state.days} unit={this.getUnit()}/>
+          </div>
         </div>
       </React.Fragment>
     );
   }
 
   componentDidMount() {
-    GeoLocation.getLocation(pos => this.getWeatherPos(pos));
+    GeoLocation.getLocation(pos => this.getWeatherPos(pos), (error) => this.resetState("Could not access your location"));
   }
 }
 

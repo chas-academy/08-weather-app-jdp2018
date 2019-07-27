@@ -1,3 +1,11 @@
+#root{
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
 input[type="text1"] {
   background-color: transparent;
   border: 0;
@@ -9,9 +17,7 @@ input[type="text1"] {
   margin-right: 20px;
   font-size: 20px;
   text-align: left;
-  position: absolute;
-  top: 20%;
-  left: 35%;
+  
 }
 
 input[type="text2"] {
@@ -25,9 +31,8 @@ input[type="text2"] {
   margin-right: 20px;
   font-size: 20px;
   text-align: left;
-  position: absolute;
-  top: 20%;
-  left: 50%;
+  
+  
 }
 
 input[type="text1"] {
@@ -62,14 +67,13 @@ body {
   background: linear-gradient(#0d78e2, #fff);
   color: #fff;
   font-weight: 100;
-  position: absolute;
-  top: 20%;
-  left: 64%;
+ 
+  
 }
 .btn2 {
   border: 0;
   padding: 8px 20px;
-  margin: 0 2px;
+  margin: 0 auto;
   border-radius: 2px;
   font-weight: lighter;
   letter-spacing: 1px;
@@ -79,8 +83,8 @@ body {
   color: #fff;
   font-weight: 100;
   position: absolute;
-  top: 1%;
-  left: 94%;
+  left: 95%
+  
 }
 button:active {
   outline: none;
@@ -97,13 +101,8 @@ button:active {
   padding: 0;
   text-align: center;
   font-family: "arial";
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 .content {
-  position: absolute;
   top: 60%;
   left: 73%;
 }
@@ -128,35 +127,30 @@ button:active {
   top: 50%;
   left: 65%;
 }
-.wrapper {
-  position: absolute;
-  top: 60%;
-  left: 20%;
-}
-.temperature {
-  position: absolute;
-  top: 60%;
-  left: 40%;
-}
-.humid {
-  position: absolute;
-  top: 58%;
-  left: 40%;
-}
-.city {
-  position: absolute;
-  top: 80%;
-  left: 20%;
-}
+
 .tdayswther {
-  position: absolute;
-  top: 40%;
-  left: 43%;
   font-size: 14px;
+  margin: 0 auto;
+  width: 180px;
 }
 .headerW {
-  position: absolute;
-  top: 33%;
-  left: 43%;
   font-size: 25px;
+  text-align: center;
+}
+.forecast {
+  display: flex;
+  order: 0,5;
+  justify-content: space-between;
+  width: 1000px;
+  height: 42px;
+  margin: 0 auto;
+  
+}
+
+.form {
+  height: 180px;
+}
+.week {
+  margin: 0 auto;
+  margin-top: 50px;
 }
