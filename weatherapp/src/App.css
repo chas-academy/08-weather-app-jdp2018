@@ -1,4 +1,7 @@
-#root{
+@import url("https://fonts.googleapis.com/css?family=Hind+Madurai&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Hind+Madurai&display=swap");
+
+#root {
   max-width: 90%;
   margin: 0 auto;
   margin-top: 60px;
@@ -11,13 +14,12 @@ input[type="text1"] {
   border: 0;
   border-bottom: solid 1px #fff;
   color: #fff;
-  font-weight: lighter;
   letter-spacing: 2px;
   margin-bottom: 30px;
-  margin-right: 20px;
+  margin-right: 1200px;
   font-size: 20px;
   text-align: left;
-  
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 input[type="text2"] {
@@ -25,19 +27,14 @@ input[type="text2"] {
   border: 0;
   border-bottom: solid 1px #fff;
   color: #fff;
-  font-weight: lighter;
   letter-spacing: 2px;
-  margin-bottom: 30px;
-  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-right: 1100px;
   font-size: 20px;
   text-align: left;
-  
-  
+  font-family: 'Hind Madurai', sans-serif;
 }
 
-input[type="text1"] {
-  outline: none;
-}
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #1d4582 inset;
   -webkit-text-fill-color: #fff !important;
@@ -67,8 +64,8 @@ body {
   background: linear-gradient(#0d78e2, #fff);
   color: #fff;
   font-weight: 100;
- 
-  
+  margin-right: 1200px;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .btn2 {
   border: 0;
@@ -83,12 +80,11 @@ body {
   color: #fff;
   font-weight: 100;
   position: absolute;
-  left: 95%
-  
+  left: 95%;
+  top: 4%;
+  font-family: 'Hind Madurai', sans-serif;
 }
-button:active {
-  outline: none;
-}
+
 .weather__info {
   width: 60%;
   font-size: 20px;
@@ -100,7 +96,7 @@ button:active {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: "arial";
+  font-family: 'Cinzel', serif;
 }
 .content {
   top: 60%;
@@ -132,19 +128,20 @@ button:active {
   font-size: 14px;
   margin: 0 auto;
   width: 180px;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .headerW {
   font-size: 25px;
   text-align: center;
+  font-family: 'Cinzel', serif;
 }
 .forecast {
   display: flex;
-  order: 0,5;
+  order: 0, 5;
   justify-content: space-between;
   width: 1000px;
   height: 42px;
   margin: 0 auto;
-  
 }
 
 .form {
@@ -153,4 +150,12 @@ button:active {
 .week {
   margin: 0 auto;
   margin-top: 50px;
+}
+
+.dailyWthr{
+  font-size: 25px;
+  position: absolute;
+  left: 45%;
+  top: 35%;
+  font-family: 'Cinzel', serif;
 }
