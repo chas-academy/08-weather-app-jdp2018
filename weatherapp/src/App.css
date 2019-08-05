@@ -16,10 +16,9 @@ input[type="text1"] {
   color: #fff;
   letter-spacing: 2px;
   margin-bottom: 30px;
-  margin-right: 1200px;
   font-size: 20px;
   text-align: left;
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 
 input[type="text2"] {
@@ -29,10 +28,9 @@ input[type="text2"] {
   color: #fff;
   letter-spacing: 2px;
   margin-bottom: 20px;
-  margin-right: 1100px;
   font-size: 20px;
   text-align: left;
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 
 input:-webkit-autofill {
@@ -42,7 +40,7 @@ input:-webkit-autofill {
 
 body {
   height: 100vh;
-  background: linear-gradient(#050821, #0d78e2);
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
   color: #fff;
 }
 
@@ -64,8 +62,7 @@ body {
   background: linear-gradient(#0d78e2, #fff);
   color: #fff;
   font-weight: 100;
-  margin-right: 1200px;
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 .btn2 {
   border: 0;
@@ -82,7 +79,7 @@ body {
   position: absolute;
   left: 95%;
   top: 4%;
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 
 .weather__info {
@@ -96,7 +93,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 .content {
   top: 60%;
@@ -125,23 +122,20 @@ body {
 }
 
 .tdayswther {
-  font-size: 14px;
+  font-size: 16px;
   margin: 0 auto;
   width: 180px;
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 .headerW {
   font-size: 25px;
   text-align: center;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
+
 .forecast {
   display: flex;
-  order: 0, 5;
-  justify-content: space-between;
-  width: 1000px;
-  height: 42px;
-  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .form {
@@ -151,11 +145,11 @@ body {
   margin: 0 auto;
   margin-top: 50px;
 }
-
-.dailyWthr{
+.datum {
+  font-size: 19px;
+  color: black;
+}
+.styleError{
   font-size: 25px;
-  position: absolute;
-  left: 45%;
-  top: 35%;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }

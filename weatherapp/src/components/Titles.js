@@ -7,9 +7,6 @@ class Titles extends React.Component {
       <div className="title">
         <h1>Discover the weather</h1>
       </div>
-      <div className="dailyWthr">
-          <p>Today</p>
-        </div>
       </React.Fragment>
     );
   }
